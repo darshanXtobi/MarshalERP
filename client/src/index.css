@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800;
+  }
+}
+
+/* Custom print formatting for official marksheets and receipts */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .noprint, nav, header, aside, .btn-print-hide {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .pagebreak {
+    page-break-after: always;
+  }
+}

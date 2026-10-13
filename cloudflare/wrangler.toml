@@ -1,0 +1,25 @@
+name = "marshal-erp"
+main = "server/server.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "marshal-erp-db"
+database_id = "your-d1-database-uuid"
+
+# Cloudflare KV Namespaces (For unlimited edge bandwidth & fast caching)
+[[kv_namespaces]]
+binding = "KV_CACHE"
+id = "your-kv-namespace-uuid"
+
+[vars]
+NODE_ENV = "production"
+PORT = "5000"
+JWT_SECRET = "production_super_secret_jwt_key_change_me"
+
+# Dual Site Routing Configuration (Cloudflare Pages or Workers Routes)
+# Route 1 (Staff ERP):    erp.yourcollege.edu/*    -> Points to Staff App
+# Route 2 (Student Site): student.yourcollege.edu/* -> Points to Learner App
+# API Route:              api.yourcollege.edu/*     -> Points to Authoritative Engine
